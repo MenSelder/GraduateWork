@@ -1,34 +1,17 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Registry;
-using RegLinkInfo.RegistryData.MountedDevices;
 
 namespace RegLinkInfo
 {
     class Program
     {
-        //static RegistryHive hiveSystem = null;
-
         static void Main(string[] args)
         {
-            // -- TEST
-
             Database database = new Database();
             //database.Init();
 
-            //---
-
-            //-- D:\Programs\hubVM\eqw\SYSTEM
-            //-- D:\Programs\hubVM\eqw\SOFTWARE
-            //hiveSystem = GetRegistryFile("SYSTEM");
-
-            //var userInfo = new UserInfo(hiveSystem);
-            //userInfo.RequestInfo();
-            //userInfo.Print();
-
             //-- select
-
             while (true)
             {
                 try
@@ -38,51 +21,25 @@ namespace RegLinkInfo
                     switch (mode)
                     {
                         case 1:
-                            //PrintInterfacesInfo(userInfo);
-                            //database.Interfaces.InfosList.ForEach(i => i.Print());
-                            //--
                             PrintInterfaces(database);
                             break;
                         case 2:
-                            //PrintNetworkInfo(userInfo);
-                            //database.Network.InfosList.ForEach(i => i.Print());
-                            //--
                             PrintNetwork(database);
                             break;
                         case 3:
-                            //PrintUsbInfo(userInfo);
-                            //database.Usb.InfosList.ForEach(i => i.Print()); // main
-                            //-
                             PrintUsb(database);
                             break;
                         case 4:
-                            //PrintDiskInfo(userInfo);
-                            //database.MountedDevices.InfosList.ForEach(i => i.Print()); // Main
-                            //                                                           //database.MountedDevices.InfosList //test
-                            //                                                           //    .Where(i => i.DeviceData.Contains("USBSTOR"))
-                            //                                                           //    .ToList()
-                            //                                                           //    .ForEach(i => Console.WriteLine(i.DeviceData));
-                            //database.MountedDevices.KeyTimeStamp.Print();
-                            //--
                             PrintMountedDevices(database);
                             break;
                         case 5:
-                            //database.MountedDevices.InfosList
-                            //    .Where(i => i.IsSignature)
-                            //    .ToList()
-                            //    .ForEach(i => i.Print());
-                            //--
                             PrintDisks(database);
                             break;
                         case 6: //WindowsPortableDevices
-                            //database.WindowsPortableDevices.InfosList.ForEach(i => i.Print());
                             PrintWindowsPortableDevices(database);
                             break;
                         case 7: //AutoplayHandlers
-                            //database.AutoplayHandlers.InfosList.ForEach(i => i.Print());
-
                             PrintAutoplayHandlers(database);
-
                             break;
                         case 8:
                             PrintPrinters(database);
@@ -104,7 +61,6 @@ namespace RegLinkInfo
                 }
             }
         }
-        //--        
 
         private static void PrintInterfaces(Database database)
         {
@@ -303,7 +259,7 @@ namespace RegLinkInfo
             });
         }
 
-        public static void WriteAllToFile(Database database) //??
+        public static void WriteAllToFile(Database database)
         {
             string filePath = database.RootFolderPath + @"\outputRegInfo.txt";
             FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
@@ -322,7 +278,6 @@ namespace RegLinkInfo
             PrintAutoplayHandlers(database);        //8
             PrintPrinters(database);                //9
 
-            //--
             Console.SetOut(baseWriter);
             streamWriter.Close();
             fileStream.Close();
