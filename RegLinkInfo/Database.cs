@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Registry;
-using RegLinkInfo.RegistryData;
 using RegLinkInfo.RegistryData.MountedDevices;
 using RegLinkInfo.RegistryData.AutoplayHandlers;
 using RegLinkInfo.RegistryData.Windows_Portable_Devices;
@@ -38,12 +35,13 @@ namespace RegLinkInfo
         //helpers
         public WindowsPortableDevicesReg WindowsPortableDevices { get; private set; }
 
-        public List<IRegInfoGetter> dataSystemList = new List<IRegInfoGetter>(); // ?
+        public List<IRegInfoGetter> dataSystemList = new List<IRegInfoGetter>();
 
         public NetworkReg Network { get; private set; }
 
         public Database()
         {
+            // static paths
             //Init(@"C:\Users\Eredin\Desktop\RegLinkInfo\testFiles\Диплом");
             //Init(@"C:\Users\Eredin\Desktop\RegLinkInfo\testFiles");
             //Init(@"C:\Users\Eredin\Desktop\dataSnapshot"); // LAST
